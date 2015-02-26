@@ -9,11 +9,20 @@
 
     /////////////////////////
     function PersonGridController($scope, PersonService) {
+        $scope.lastViewed = '';
+        $scope.show = false;
         $scope.query = '';
         $scope.persons = PersonService.getItems();
         $scope.phoneType = 'home';
         $scope.predicate = '';
         $scope.reverse = false;
+        $scope.arrowsCls = {
+            bottom: 'glyphicon glyphicon-triangle-bottom',
+            top: 'glyphicon glyphicon-triangle-top'
+        };
+        $scope.toggleModal = function () {
+            $scope.show = !$scope.show;
+        };
         $scope.showButton = {
             'text': 'Show Lesson Content',
             'btnClass': 'btn-default',
@@ -32,7 +41,7 @@
             }
             $scope.predicate = '';
         };
-        $scope.setPredicateAndReverse = function (predicate, reverse) {
+        $scope.setPredAndRev = function (predicate, reverse) {
             $scope.predicate = predicate;
             $scope.reverse = reverse;
         };

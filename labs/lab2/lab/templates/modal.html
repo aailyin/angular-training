@@ -1,0 +1,24 @@
+<div class="custom-modal" ng-show="show">
+    <div class="overlay">
+        <span class="modal-close-x" ng-click="hideModal()"></span>
+    </div>
+    <div class="modal-dialog">
+        <div class="modal-content" ng-transclude>
+            <header>{{header}}</header>
+            <div class="content">
+                <ul>
+                    <li ng-repeat="(key, prop) in person" if="key != 'firstName' && key != 'lastName'">
+                        <b>{{key}}:</b>
+                        <span>{{prop}}</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="modal-buttons">
+            <div class="buttons-wrap">
+                <button type="button" class="modal-close btn-default" ng-click="hideModal()">{{cancelText}}</button>
+                <button type="button" class="modal-submit btn-primary" ng-click="submitModal()">{{okText}}</button>
+            </div>
+        </div>
+    </div>
+</div>

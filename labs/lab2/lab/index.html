@@ -24,27 +24,27 @@
 						<thead>
 							<tr>
 								<th>
-									<a href="" ng-click="predicate='firstName'; reverse=!reverse">
+									<a href="" ng-click="setPredAndRev('firstName', !reverse)">
 										First Name
-										<span ng-class="(predicate == 'firstName') ? (reverse ? 'glyphicon glyphicon-triangle-bottom' : 'glyphicon glyphicon-triangle-top') : ''"></span>
+										<span ng-class="(predicate == 'firstName') ? (reverse ? arrowsCls.bottom : arrowsCls.top) : ''"></span>
 									</a>
 								</th>
 								<th>
-									<a href="" ng-click="predicate='lastName'; reverse=!reverse">
+									<a href="" ng-click="setPredAndRev('lastName', !reverse)">
 										Last Name
-										<span ng-class="(predicate == 'lastName') ? (reverse ? 'glyphicon glyphicon-triangle-bottom' : 'glyphicon glyphicon-triangle-top') : ''"></span>
+										<span ng-class="(predicate == 'lastName') ? (reverse ? arrowsCls.bottom : arrowsCls.top) : ''"></span>
 									</a>
 								</th>
 								<th>
-									<a href="" ng-click="predicate='age'; reverse=!reverse">
+									<a href="" ng-click="setPredAndRev('age', !reverse)">
 										Age
-										<span ng-class="(predicate == 'age') ? (reverse ? 'glyphicon glyphicon-triangle-bottom' : 'glyphicon glyphicon-triangle-top') : ''"></span>
+										<span ng-class="(predicate == 'age') ? (reverse ? arrowsCls.bottom : arrowsCls.top) : ''"></span>
 									</a>
 								</th>
 								<th>
-									<a href="" ng-click="predicate='address.city'; reverse=!reverse">
+									<a href="" ng-click="setPredAndRev('address.city', !reverse)">
 										City
-										<span ng-class="(predicate == 'address.city') ? (reverse ? 'glyphicon glyphicon-triangle-bottom' : 'glyphicon glyphicon-triangle-top') : ''"></span>
+										<span ng-class="(predicate == 'address.city') ? (reverse ? arrowsCls.bottom : arrowsCls.top) : ''"></span>
 									</a>
 								</th>
 								<th>
@@ -66,10 +66,19 @@
                                     <span ng-repeat="phone in person.phoneNumber"
                                           ng-show="phone.type == phoneType">{{phone.number}}</span>
 								</td>
-                                <td><button type="button" class="form-control glyphicon glyphicon-edit"></button></td>
+                                <td><button type="button" class="form-control glyphicon glyphicon-edit"
+                                               ng-click="toggleModal()">
+                                    <custom-modal header="person.firstName person.lastName"
+                                                    show="show"
+                                                    ok-text="Submit"
+                                                    cancel-text="Cancel window"></custom-modal>
+                                </button></td>
 							</tr>
 						</tbody>
 					</table>
+				</div>
+				<div class="last-viewed" ng-show={{lastViewed}}>
+				    Last viewed: {{lastViewed}}
 				</div>
 			</div>
 		</div>
