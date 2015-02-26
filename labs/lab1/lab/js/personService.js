@@ -1,10 +1,11 @@
 (function (){
     'use strict';
 
-angular
-    .module('personLibraryApp')
-    .service('PersonService', PersonService);
+    angular
+        .module('personLibraryApp')
+        .service('PersonService', PersonService);
 
+    //////////////////////
     function PersonService() {
         this.persons = [
             {

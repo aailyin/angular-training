@@ -1,5 +1,5 @@
 (function () {
     'use strict';
 
-angular.module('personLibraryApp', []);
+    angular.module('personLibraryApp', []);
 })();

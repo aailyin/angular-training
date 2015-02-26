@@ -1,10 +1,13 @@
 (function () {
+    'use strict';
+
     angular
         .module('personLibraryApp')
         .controller('PersonGridController', PersonGridController);
 
     PersonGridController.$inject = ['$scope', 'PersonService'];
 
+    ////////////////////
     function PersonGridController($scope, PersonService) {
         $scope.query = '';
         $scope.persons = PersonService.getItems();
