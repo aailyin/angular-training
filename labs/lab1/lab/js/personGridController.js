@@ -32,6 +32,11 @@
             }
             $scope.predicate = '';
         };
+
+        $scope.setPredicateAndReverse = function (predicate, reverse) {
+            $scope.predicate = predicate;
+            $scope.reverse = reverse;
+        };
     };
 })();
 
