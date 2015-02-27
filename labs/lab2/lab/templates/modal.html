@@ -7,9 +7,33 @@
             <header>{{header}}</header>
             <div class="content">
                 <ul>
-                    <li ng-repeat="(key, prop) in person" if="key != 'firstName' && key != 'lastName'">
-                        <b>{{key}}:</b>
-                        <span>{{prop}}</span>
+                    <li>
+                        <b>Age:</b>
+                        <span>{{data.age}}</span>
+                    </li>
+                    <li>
+                        <b>Street:</b>
+                        <span>{{data.address.streetAddress}}</span>
+                    </li>
+                    <li>
+                        <b>City:</b>
+                        <span>{{data.address.city}}</span>
+                    </li>
+                    <li>
+                        <b>State:</b>
+                        <span>{{data.address.state}}</span>
+                    </li>
+                    <li>
+                        <b>Postal Code:</b>
+                        <span>{{data.address.postalCode}}</span>
+                    </li>
+                    <li>
+                        <b>Home Number:</b>
+                        <span>{{data.phoneNumber[0].number}}</span>
+                    </li>
+                    <li>
+                        <b>Fax Number:</b>
+                        <span>{{data.phoneNumber[1].number}}</span>
                     </li>
                 </ul>
             </div>

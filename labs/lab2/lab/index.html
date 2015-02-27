@@ -4,6 +4,7 @@
 	<meta charset="UTF-8">
 	<link rel="stylesheet" href="../../../libs/bootstrap/css/bootstrap.min.css">
 	<link rel="stylesheet" href="css/person-library.css">
+	<link rel="stylesheet" href="css/custom-modal.css">
 	<title>Homework 1</title>
 </head>
 <body>
@@ -66,17 +67,18 @@
                                     <span ng-repeat="phone in person.phoneNumber"
                                           ng-show="phone.type == phoneType">{{phone.number}}</span>
 								</td>
-                                <td><button type="button" class="form-control glyphicon glyphicon-edit"
-                                               ng-click="toggleModal()">
-                                    <custom-modal header="person.firstName person.lastName"
-                                                    show="show"
-                                                    ok-text="Submit"
-                                                    cancel-text="Cancel window"></custom-modal>
-                                </button></td>
+                                <td>
+                                    <span class="hidden">{{person.firstName}}</span>
+                                    <button index="{{$index}}" type="button" class="form-control glyphicon glyphicon-edit" ng-click="toggleModal(this)"></button>
+                                </td>
 							</tr>
 						</tbody>
 					</table>
 				</div>
+				 <custom-modal header="Header"
+                                show="show"
+                                ok-text="Submit"
+                                cancel-text="Cancel window"></custom-modal>
 				<div class="last-viewed" ng-show={{lastViewed}}>
 				    Last viewed: {{lastViewed}}
 				</div>
@@ -88,5 +90,6 @@
 	<script src="js/app.js"></script>
 	<script src="js/personService.js"></script>
 	<script src="js/personGridController.js"></script>
+	<script src="js/customModalDirective.js"></script>
 </body>
 </html>

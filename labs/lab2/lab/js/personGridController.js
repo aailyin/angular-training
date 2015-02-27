@@ -13,6 +13,7 @@
         $scope.show = false;
         $scope.query = '';
         $scope.persons = PersonService.getItems();
+        $scope.currentPerson = $scope.persons[0];
         $scope.phoneType = 'home';
         $scope.predicate = '';
         $scope.reverse = false;
@@ -20,7 +21,10 @@
             bottom: 'glyphicon glyphicon-triangle-bottom',
             top: 'glyphicon glyphicon-triangle-top'
         };
-        $scope.toggleModal = function () {
+        $scope.toggleModal = function (context) {
+            if(context){
+                $scope.data = context.person;
+            }
             $scope.show = !$scope.show;
         };
         $scope.showButton = {
