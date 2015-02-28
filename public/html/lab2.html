@@ -7,8 +7,8 @@
 	<link rel="stylesheet" href="../stylesheets/custom-modal.css">
 	<title>Homework 1</title>
 </head>
-<body>
-	<div class="container" ng-controller="PersonGridController">
+<body ng-controller="PersonGridController">
+	<div class="container">
 		<div class="row">
 			<div class="person-grid-wrapper col-sm-12">
 				<div class="person-header">
@@ -75,16 +75,17 @@
 						</tbody>
 					</table>
 				</div>
-				 <custom-modal header="Header"
-                                show="show"
-                                ok-text="Submit"
-                                cancel-text="Cancel window"></custom-modal>
 				<div class="last-viewed" ng-show="lastViewed.person != null">
 				    Last viewed: {{lastViewed.person.firstName}} {{lastViewed.person.lastName}}
 				</div>
 			</div>
 		</div>
 	</div>
+
+	<custom-modal header="Header" show="show" ok-text="Submit"
+                  cancel-text="Cancel window"
+                  oncancel="cancelFn"
+                  onsubmit="submitFn"></custom-modal>
 
 	<script src="../javascripts/libs/angular/angular.min.js"></script>
 	<script src="../javascripts/lab2/app.js"></script>

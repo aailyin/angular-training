@@ -11,3 +11,8 @@
 .person-grid .form-control {
     width: auto;
 }
+
+.last-viewed {
+    font-weight: 600;
+    color: #DE0202;
+}
