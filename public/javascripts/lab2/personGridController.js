@@ -9,7 +9,7 @@
 
     /////////////////////////
     function PersonGridController($scope, PersonService) {
-        $scope.lastViewed = '';
+        $scope.lastViewed = {};
         $scope.show = false;
         $scope.query = '';
         $scope.persons = PersonService.getItems();
