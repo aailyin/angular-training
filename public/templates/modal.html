@@ -1,0 +1,53 @@
+<div class="custom-modal" ng-show="show">
+    <div class="overlay"></div>
+    <div class="modal-dialog">
+        <div class="modal-header">
+            <header>
+                <h4>
+                    {{data.firstName}} {{data.lastName}}
+                    <a class="close" ng-click="hideModal()">×</a>
+                </h4>
+            </header>
+        </div>
+        <div class="modal-content">
+            <div class="content">
+                <ul>
+                    <li>
+                        <b>Age:</b>
+                        <span>{{data.age}}</span>
+                    </li>
+                    <li>
+                        <b>Street:</b>
+                        <span>{{data.address.streetAddress}}</span>
+                    </li>
+                    <li>
+                        <b>City:</b>
+                        <span>{{data.address.city}}</span>
+                    </li>
+                    <li>
+                        <b>State:</b>
+                        <span>{{data.address.state}}</span>
+                    </li>
+                    <li>
+                        <b>Postal Code:</b>
+                        <span>{{data.address.postalCode}}</span>
+                    </li>
+                    <li>
+                        <b>Home Number:</b>
+                        <span>{{data.phoneNumber[0].number}}</span>
+                    </li>
+                    <li>
+                        <b>Fax Number:</b>
+                        <span>{{data.phoneNumber[1].number}}</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="modal-buttons">
+            <div class="buttons-wrap">
+                <button type="button" class="modal-close btn btn-default" ng-click="hideModal()">{{cancelText}}</button>
+                <button type="button" class="modal-submit btn btn-primary" ng-click="submitModal()">{{okText}}</button>
+            </div>
+        </div>
+    </div>
+</div>

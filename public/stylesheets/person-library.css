@@ -1,5 +1,5 @@
 * {
-    outline: 0;   
+    outline: 0;
 }
 
 .line {
@@ -9,5 +9,10 @@
 }
 
 .person-grid .form-control {
-    width: auto;   
+    width: auto;
+}
+
+.last-viewed {
+    font-weight: 600;
+    color: #DE0202;
 }
