@@ -3,6 +3,7 @@
 <head lang="en">
 	<meta charset="UTF-8">
 	<link rel="stylesheet" href="../libs/bootstrap/css/bootstrap.min.css">
+	<link rel="stylesheet" href="../libs/bower-ui-grid/ui-grid.min.css">
 	<link rel="stylesheet" href="../stylesheets/person-library.css">
 	<link rel="stylesheet" href="../stylesheets/custom-modal.css">
 	<title>Homework 1</title>
@@ -74,6 +75,7 @@
 							</tr>
 						</tbody>
 					</table>
+					<div id="grid" ui-grid="gridOptions" ui-grid-edit external-scopes="myExternalScope"></div>
 				</div>
 				<div class="last-viewed" ng-show="lastViewed.person != null">
 				    Last viewed: {{lastViewed.person.firstName}} {{lastViewed.person.lastName}}
@@ -88,6 +90,7 @@
                   onsubmit="submitFn"></custom-modal>
 
 	<script src="../libs/angular/angular.min.js"></script>
+	<script src="../libs/bower-ui-grid/ui-grid.min.js"></script>
 	<script src="../javascripts/lab2/app.js"></script>
 	<script src="../javascripts/lab2/personService.js"></script>
 	<script src="../javascripts/lab2/personGridController.js"></script>
