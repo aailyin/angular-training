@@ -10,7 +10,7 @@ It can be used as the first step in the world of Angular apps.
 
 Please, install Node on your computer, then go to root folder of angular-training app and 
 type _npm install_ in cmd. After downloading of all dependencies type _npm start_ in cmd and 
-open browser. 
+open a browser. 
 
-The pages with done exercises are available by url *localhost:3000/static/html/lab$.html*
+The pages with made exercises are available by url *localhost:3000/static/html/lab$.html*
 where $ is number of exercise.
