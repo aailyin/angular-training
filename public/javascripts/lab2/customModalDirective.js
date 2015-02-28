@@ -27,7 +27,7 @@
                     if(this.outerScopeFn){
                         this.outerScopeFn();
                     }
-                    scope.lastViewed = scope.person;
+                    scope.lastViewed.person = scope.data;
                     scope.toggleModal();
                 };
                 if(attrs.oncancel){

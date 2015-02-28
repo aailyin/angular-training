@@ -9,11 +9,12 @@
 
     /////////////////////////
     function PersonGridController($scope, PersonService) {
-        $scope.lastViewed = {};
+        $scope.lastViewed = {
+            person: null
+        };
         $scope.show = false;
         $scope.query = '';
         $scope.persons = PersonService.getItems();
-        $scope.currentPerson = $scope.persons[0];
         $scope.phoneType = 'home';
         $scope.predicate = '';
         $scope.reverse = false;

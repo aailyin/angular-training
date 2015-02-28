@@ -79,8 +79,8 @@
                                 show="show"
                                 ok-text="Submit"
                                 cancel-text="Cancel window"></custom-modal>
-				<div class="last-viewed" ng-show="{{lastViewed.firstName}}">
-				    Last viewed: {{lastViewed.firstName}} {{lastViewed.lastName}}
+				<div class="last-viewed" ng-show="lastViewed.person != null">
+				    Last viewed: {{lastViewed.person.firstName}} {{lastViewed.person.lastName}}
 				</div>
 			</div>
 		</div>
