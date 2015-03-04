@@ -13,6 +13,20 @@
 }
 
 .last-viewed {
+    margin-top: 20px;
     font-weight: 600;
     color: #DE0202;
+}
+
+.grid-cell-template {
+    padding: 5px;
+}
+
+.grid-header-selectbox {
+    min-width: 200px !important;
+}
+
+.person-grid .ui-grid-header-cell-wrapper .form-control {
+    width: 100%;
+    padding: 6px;
 }

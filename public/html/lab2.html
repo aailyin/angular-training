@@ -2,10 +2,10 @@
 <html ng-app="personLibraryApp">
 <head lang="en">
 	<meta charset="UTF-8">
-	<link rel="stylesheet" href="../javascripts/libs/bootstrap/css/bootstrap.min.css">
+	<link rel="stylesheet" href="../libs/bootstrap/css/bootstrap.min.css">
 	<link rel="stylesheet" href="../stylesheets/person-library.css">
 	<link rel="stylesheet" href="../stylesheets/custom-modal.css">
-	<title>Homework 1</title>
+	<title>Homework 2</title>
 </head>
 <body ng-controller="PersonGridController">
 	<div class="container">
@@ -13,7 +13,7 @@
 			<div class="person-grid-wrapper col-sm-12">
 				<div class="person-header">
 					<header>
-						<h1>Lesson 1. Homework</h1>
+						<h1>Lesson 2. Homework</h1>
 					</header>
 					<button type="button" class="btn" ng-class="showButton.btnClass" ng-click="changeBtn()">{{showButton.text}}</button>
 				</div>
@@ -68,8 +68,7 @@
                                           ng-show="phone.type == phoneType">{{phone.number}}</span>
 								</td>
                                 <td>
-                                    <span class="hidden">{{person.firstName}}</span>
-                                    <button index="{{$index}}" type="button" class="form-control glyphicon glyphicon-edit" ng-click="toggleModal(this)"></button>
+                                    <button type="button" class="form-control glyphicon glyphicon-edit" ng-click="toggleModal(this.person)"></button>
                                 </td>
 							</tr>
 						</tbody>
@@ -87,7 +86,7 @@
                   oncancel="cancelFn"
                   onsubmit="submitFn"></custom-modal>
 
-	<script src="../javascripts/libs/angular/angular.min.js"></script>
+	<script src="../libs/angular/angular.min.js"></script>
 	<script src="../javascripts/lab2/app.js"></script>
 	<script src="../javascripts/lab2/personService.js"></script>
 	<script src="../javascripts/lab2/personGridController.js"></script>

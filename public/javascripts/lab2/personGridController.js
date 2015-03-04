@@ -21,9 +21,9 @@
         };
 
         /* Methods */
-        $scope.toggleModal = function (context) {
-            if(context){
-                $scope.data = context.person;
+        $scope.toggleModal = function (data) {
+            if(data){
+                $scope.data = data;
             }
             $scope.show = !$scope.show;
         };
