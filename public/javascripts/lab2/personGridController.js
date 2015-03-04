@@ -21,9 +21,9 @@
         };
 
         /* Methods */
-        $scope.toggleModal = function (context) {
-            if(context){
-                $scope.data = context.person;
+        $scope.toggleModal = function (data) {
+            if(data){
+                $scope.data = data;
             }
             $scope.show = !$scope.show;
         };
@@ -58,23 +58,6 @@
         };
         $scope.submitFn = function () {
             console.log('submit');
-        };
-        $scope.phone = $scope.phoneType == 'home' ? 'phoneNumber[0].number' : 'phoneNumber[1].number';
-        $scope.headerTemplate = '<select class="form-control" ng-model="phoneType">' +
-										  '<option value="home">Home Phone Number</option>' +
-										  '<option value="fax">Fax Number</option></select>';
-        $scope.columns = [
-                {field: 'firstName', displayName: 'Firstname'},
-                {field: 'lastName', displayName: 'Lastname'},
-                {field: 'age', displayName: 'Age'},
-                {field: 'address.city', displayName: 'City'},
-                {field: $scope.phone, displayName: '',
-                            headerCellTemplate: $scope.headerTemplate}
-            ];
-        $scope.myExternalScope = $scope;
-        $scope.gridOptions = {
-            data: 'persons',
-            columnDefs: $scope.columns
         };
     };
 })();

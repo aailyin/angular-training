@@ -68,8 +68,7 @@
                                           ng-show="phone.type == phoneType">{{phone.number}}</span>
 								</td>
                                 <td>
-                                    <span class="hidden">{{person.firstName}}</span>
-                                    <button index="{{$index}}" type="button" class="form-control glyphicon glyphicon-edit" ng-click="toggleModal(this)"></button>
+                                    <button type="button" class="form-control glyphicon glyphicon-edit" ng-click="toggleModal(this.person)"></button>
                                 </td>
 							</tr>
 						</tbody>

@@ -1,5 +1,5 @@
 (function () {
     'use strict';
 
-    angular.module('personLibraryApp', ['ui.grid']);
+    angular.module('personLibraryApp', []);
 })();

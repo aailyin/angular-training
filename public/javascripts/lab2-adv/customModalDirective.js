@@ -5,7 +5,7 @@
         .module('personLibraryApp')
         .directive('customModal', customModal);
 
-    //////////////////////
+    //////////////////////////////////////////////
     function customModal() {
         return {
             templateUrl: '../templates/modal.html',
