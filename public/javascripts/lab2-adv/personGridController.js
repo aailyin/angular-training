@@ -5,8 +5,6 @@
         .module('personLibraryApp')
         .controller('PersonGridController', PersonGridController);
 
-    PersonGridController.$inject = ['$scope', 'PersonService'];
-
     /////////////////////////
     function PersonGridController($scope, PersonService) {
         $scope.show = false;
