@@ -13,8 +13,8 @@ type _npm install_ in cmd. After downloading of all dependencies type _npm start
 open a browser. 
 
 The pages with made exercises are available by url *localhost:3000/static/html/lab$.html*
-where $ is number of exercise.
+where $ is a number of exercise.
 
 #### Advanced tasks
 If you want to see made exercises with additional task you should input in your browser
-url *localhost:3000/static/html/lab$-adv.html* where $ is number of exercise.
+url *localhost:3000/static/html/lab$-adv.html* where $ is a number of exercise.
