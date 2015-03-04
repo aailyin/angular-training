@@ -1,4 +1,4 @@
-# angular-training
+# Angular-training 
 
 This is a web-application based on AngularJS and Bootstrap frameworks that is developed during training
 in my ISSoft company. I'll code some exercises from course and will share them here.
@@ -14,3 +14,6 @@ open a browser.
 
 The pages with made exercises are available by url *localhost:3000/static/html/lab$.html*
 where $ is number of exercise.
+
+If you want to see made exercises with additional task you should input in your browser
+url *localhost:3000/static/html/lab$-adv.html* where $ is number of exercise.
