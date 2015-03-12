@@ -48,8 +48,12 @@
         /* Methods of controller */
         $scope.toggleModal = function (data) {
             if(data){
+                console.log('Param: ' + data);
                 $scope.data = data;
+            } else {
+                console.log('Param: ' + data);
             }
+
             $scope.show = !$scope.show;
         };
         $scope.lastViewed = {

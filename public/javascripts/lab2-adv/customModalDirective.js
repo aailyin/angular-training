@@ -12,9 +12,14 @@
             restrict: 'EA',
             transclude: true,
             replace: true,
-            scope: true,
+            scope: {
+                header: '@',
+                toggleModal: '&',
+                show: '=',
+                lastViewed: '=',
+                data: '='
+            },
             link: function (scope, element, attrs) {
-                scope.header = attrs.header || "Header";
                 scope.okText = attrs.okText || "OK";
                 scope.cancelText = attrs.cancelText || "Cancel";
                 if(attrs.oncancel){
@@ -27,7 +32,7 @@
                     if(this.hideOutFn){
                         this.hideOutFn();
                     }
-                    scope.toggleModal();
+                    scope.toggleModal({show: false});
                 };
                 scope.submitModal = function () {
                     if(this.submitOutFn){

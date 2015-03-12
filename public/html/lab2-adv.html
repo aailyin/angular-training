@@ -31,10 +31,44 @@
 		</div>
 	</div>
 
-	<custom-modal header="Header" show="show" ok-text="Submit"
+	<custom-modal header="{{data.firstName}} {{data.lastName}}" show="show" ok-text="Submit"
                   cancel-text="Cancel window"
                   oncancel="cancelFn"
-                  onsubmit="submitFn"></custom-modal>
+                  onsubmit="submitFn"
+                  toggle-modal="toggleModal(show)"
+                  last-viewed="lastViewed"
+                  data="data">
+        <ul>
+            <li>
+                <b>Age:</b>
+                <span>{{data.age}}</span>
+            </li>
+            <li>
+                <b>Street:</b>
+                <span>{{data.address.streetAddress}}</span>
+            </li>
+            <li>
+                <b>City:</b>
+                <span>{{data.address.city}}</span>
+            </li>
+            <li>
+                <b>State:</b>
+                <span>{{data.address.state}}</span>
+            </li>
+            <li>
+                <b>Postal Code:</b>
+                <span>{{data.address.postalCode}}</span>
+            </li>
+            <li>
+                <b>Home Number:</b>
+                <span>{{data.phoneNumber[0].number}}</span>
+            </li>
+            <li>
+                <b>Fax Number:</b>
+                <span>{{data.phoneNumber[1].number}}</span>
+            </li>
+        </ul>
+    </custom-modal>
 
 	<script src="../libs/angular/angular.min.js"></script>
 	<script src="../libs/bower-ui-grid/ui-grid.min.js"></script>
