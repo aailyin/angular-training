@@ -9,18 +9,17 @@
     function PersonService() {
         this.persons = [
             {
+                "id": 13457,
                 "firstName": "John",
                 "lastName": "Smith",
                 "age": 25,
-                "address":
-                {
+                "address": {
                     "streetAddress": "21 2nd Street",
                     "city": "New York",
                     "state": "NY",
                     "postalCode": "10021"
                 },
-                "phoneNumber":
-                [
+                "phoneNumber": [
                     {
                         "type": "home",
                         "number": "212 555-1234"
@@ -32,18 +31,17 @@
                 ]
             },
             {
+                "id": 76578,
                 "firstName": "Simona",
                 "lastName": "Morasca",
                 "age": 22,
-                "address":
-                {
+                "address": {
                     "streetAddress": "3 Mcauley Dr",
                     "city": "Ashland",
                     "state": "OH",
                     "postalCode": "44805"
                 },
-                "phoneNumber":
-                [
+                "phoneNumber": [
                     {
                         "type": "home",
                         "number": "419-503-2484"
@@ -55,18 +53,17 @@
                 ]
             },
             {
+                "id": 12583,
                 "firstName": "Josephine",
                 "lastName": "Darakjy",
                 "age": 33,
-                "address":
-                {
+                "address": {
                     "streetAddress": "4 B Blue Ridge Blvd",
                     "city": "Brighton",
                     "state": "MI",
                     "postalCode": "48116"
                 },
-                "phoneNumber":
-                [
+                "phoneNumber": [
                     {
                         "type": "home",
                         "number": "973-605-6492"
@@ -80,6 +77,21 @@
         ];
         this.getItems = function () {
             return this.persons;
+        };
+        this.getUserById = function (personId) {
+            for(var i = 0; i < this.persons.length; i++){
+                if(this.persons[i].id == personId){
+                    return this.persons[i];
+                }
+            }
+        };
+        this.updateUser = function (user){
+            for(var i = 0; i < this.persons.length; i++){
+                if(this.persons[i].id == user.id){
+                    this.persons[i] = user;
+                    return;
+                }
+            }
         }
     }
 })();

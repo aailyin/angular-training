@@ -13,7 +13,6 @@
         $scope.query = '';
         $scope.persons = PersonService.getItems();
         $scope.phoneType = 'home';
-        $scope.predicate = '';
         $scope.reverse = false;
         $scope.arrowsCls = {
             bottom: 'glyphicon glyphicon-triangle-bottom',
@@ -34,28 +33,6 @@
                 $scope.data = data;
             }
             $scope.show = !$scope.show;
-        };
-        $scope.lastViewed = {
-            person: null
-        };
-        $scope.showButton = {
-            'text': 'Show Lesson Content',
-            'btnClass': 'btn-default',
-            'isShow': false
-        };
-
-        $scope.changeBtn = function () {
-            if($scope.showButton.isShow){
-                $scope.showButton.btnClass = 'btn-default';
-                $scope.showButton.text = 'Show Lesson Content';
-                $scope.showButton.isShow = false;
-                $scope.lastViewed.person = null;
-            } else {
-                $scope.showButton.btnClass = 'btn-primary';
-                $scope.showButton.text = 'Hide Lesson Content';
-                $scope.showButton.isShow = true;
-            }
-            $scope.predicate = '';
         };
         $scope.setPredAndRev = function (predicate, reverse) {
             $scope.predicate = predicate;
