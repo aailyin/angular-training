@@ -12,13 +12,21 @@
         $scope.show = false;
         $scope.persons = PersonService.getItems();
         $scope.phoneType = 'home';
+        $scope.typeFilter = function (item){
+            for(var i = 0; i < item.phoneNumber.length; i++){
+                if(item.phoneNumber[i].type === $scope.phoneType){
+                    console.log('Type: ' + $scope.phoneType);
+                    return item.phoneNumber[i].number;
+                }
+            }
+        };
 
         /* UI Grid properties */
         $scope.headerTemplate = '<select class="form-control" ng-model="grid.appScope.phoneType">' +
 								    '<option value="home">Home Phone Number</option>' +
 								    '<option value="fax">Fax Number</option>' +
                                 '</select>';
-        $scope.phoneCellTemplate = '<span ng-repeat="phone in row.entity.phoneNumber" ng-show="phone.type == grid.appScope.phoneType">{{phone.number}}</span>';
+        $scope.phoneCellTemplate = '<span ng-repeat="phone in row.entity.phoneNumber | filter: grid.appScope.typeFilter(row.entity)">{{phone.number}}</span>';
         $scope.actionCellTemplate = '<div class="action-wrapper">' +
                                         '<button type="button" class="form-control glyphicon glyphicon-edit" ng-click="grid.appScope.toggleModal(row.entity)"></button>' +
                                     '</div>';

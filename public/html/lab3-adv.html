@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html ng-app="personLibraryApp">
+<head lang="en">
+	<meta charset="UTF-8">
+	<link rel="stylesheet" href="../libs/bootstrap/css/bootstrap.min.css">
+	<link rel="stylesheet" href="../libs/bower-ui-grid/ui-grid.min.css">
+	<link rel="stylesheet" href="../stylesheets/person-library.css">
+	<link rel="stylesheet" href="../stylesheets/custom-modal.css">
+	<title>Homework 2. Advance</title>
+</head>
+<body ng-controller="PersonGridController" ng-open="refreshData()">
+<div class="container">
+	<div class="row">
+		<div class="person-grid-wrapper col-sm-12">
+			<div class="person-header">
+				<header>
+					<h1>Lesson 3. Homework + Advance task</h1>
+				</header>
+				<button type="button" class="btn" ng-class="showButton.btnClass" ng-click="changeBtn()">{{showButton.text}}</button>
+			</div>
+			<div class="line"></div>
+			<div class="person-grid" ng-show="showButton.isShow">
+				<input type="text" class="form-control" placeholder="Enter text to filter persons" ng-model="query">
+				<div class="line"></div>
+				<table class="table">
+					<thead>
+					<tr>
+						<th>
+							<a href="" ng-click="setPredAndRev('firstName', !reverse)">
+								First Name
+								<span ng-class="(predicate == 'firstName') ? (reverse ? arrowsCls.bottom : arrowsCls.top) : ''"></span>
+							</a>
+						</th>
+						<th>
+							<a href="" ng-click="setPredAndRev('lastName', !reverse)">
+								Last Name
+								<span ng-class="(predicate == 'lastName') ? (reverse ? arrowsCls.bottom : arrowsCls.top) : ''"></span>
+							</a>
+						</th>
+						<th>
+							<a href="" ng-click="setPredAndRev('age', !reverse)">
+								Age
+								<span ng-class="(predicate == 'age') ? (reverse ? arrowsCls.bottom : arrowsCls.top) : ''"></span>
+							</a>
+						</th>
+						<th>
+							<a href="" ng-click="setPredAndRev('address.city', !reverse)">
+								City
+								<span ng-class="(predicate == 'address.city') ? (reverse ? arrowsCls.bottom : arrowsCls.top) : ''"></span>
+							</a>
+						</th>
+						<th>
+							<select class="form-control" ng-model="phoneType">
+								<option value="home">Home Phone Number</option>
+								<option value="fax">Fax Number</option>
+							</select>
+						</th>
+						<th>Actions</th>
+					</tr>
+					</thead>
+					<tbody>
+					<tr ng-repeat="person in persons | filter:query | orderBy:predicate:reverse">
+						<td>{{person.firstName}}</td>
+						<td>{{person.lastName}}</td>
+						<td>{{person.age}}</td>
+						<td>{{person.address.city}}</td>
+						<td>
+							<span ng-repeat="phone in person.phoneNumber | filter:typeFilter(person)">{{phone.number}}</span>
+						</td>
+						<td>
+							<button type="button" class="form-control glyphicon glyphicon-edit" ng-click="toggleModal(this.person)"></button>
+						</td>
+					</tr>
+					</tbody>
+				</table>
+			</div>
+			<div class="last-viewed" ng-show="lastViewed.person != null">
+				Last viewed: {{lastViewed.person.firstName}} {{lastViewed.person.lastName}}
+			</div>
+		</div>
+	</div>
+</div>
+
+<custom-modal header="<i>{{data.firstName}} {{data.lastName}}</i>" show="show" ok-text="Submit"
+			  cancel-text="Cancel window"
+			  oncancel="cancelFn"
+			  onsubmit="submitFn"
+			  toggle-modal="toggleModal(show)"
+			  last-viewed="lastViewed"
+			  data="data">
+	<ul>
+		<li>
+			<b>Age:</b>
+			<span>{{data.age}}</span>
+		</li>
+		<li>
+			<b>Street:</b>
+			<span>{{data.address.streetAddress}}</span>
+		</li>
+		<li>
+			<b>City:</b>
+			<span>{{data.address.city}}</span>
+		</li>
+		<li>
+			<b>State:</b>
+			<span>{{data.address.state}}</span>
+		</li>
+		<li>
+			<b>Postal Code:</b>
+			<span>{{data.address.postalCode}}</span>
+		</li>
+		<li>
+			<b>Home Number:</b>
+			<span>{{data.phoneNumber[0].number}}</span>
+		</li>
+		<li>
+			<b>Fax Number:</b>
+			<span>{{data.phoneNumber[1].number}}</span>
+		</li>
+	</ul>
+</custom-modal>
+
+<script src="../libs/angular/angular.min.js"></script>
+<script src="../libs/bower-ui-grid/ui-grid.min.js"></script>
+<script src="../javascripts/lab3-adv/app.js"></script>
+<script src="../javascripts/lab3-adv/personService.js"></script>
+<script src="../javascripts/lab3-adv/personGridController.js"></script>
+<script src="../javascripts/lab3-adv/customModalDirective.js"></script>
+<!--<script src="https://code.angularjs.org/1.4.0-beta.0/angular-sanitize.js"></script>-->
+</body>
+</html>
