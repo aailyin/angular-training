@@ -4,40 +4,41 @@
 	</header>
 	<div class="line"></div>
 	<div class="details row">
-		<div class="col-sm-6">
-			<div>
+		<div class="col-sm-6 col-xs-6">
+			<div class="form-group">
 				<label for="age">Age *</label>
-				<input id="age" type="text" placeholder="{{person.age}}" ng-model="person.age">
+				<input id="age" type="text" class="form-control" placeholder="{{person.age}}" ng-model="person.age">
 			</div>
-			<div>
+			<div class="form-group">
 				<label for="street">Street</label>
-				<input id="street" type="text" placeholder="{{person.address.streetAddress}}" ng-model="person.address.streetAddress">
+				<input id="street" type="text" class="form-control" placeholder="{{person.address.streetAddress}}" ng-model="person.address.streetAddress">
 			</div>
-			<div>
+			<div class="form-group">
 				<label for="city">City *</label>
-				<input id="city" type="text" placeholder="{{person.address.city}}" ng-model="person.address.city">
+				<input id="city" type="text" class="form-control" placeholder="{{person.address.city}}" ng-model="person.address.city">
 			</div>
-			<div>
+			<div class="form-group">
 				<label for="state">State</label>
-				<input id="state" type="text" placeholder="{{person.address.state}}" ng-model="person.address.state">
+				<input id="state" type="text" class="form-control" placeholder="{{person.address.state}}" ng-model="person.address.state">
 			</div>
 		</div>
-		<div class="col-sm-6">
-			<div>
+		<div class="col-sm-6 col-xs-6">
+			<div class="form-group">
 				<label for="postal-code">Postal Code</label>
-				<input id="postal-code" type="text" placeholder="{{person.address.postalCode}}" ng-model="person.address.postalCode">
+				<input id="postal-code" type="text" class="form-control" placeholder="{{person.address.postalCode}}" ng-model="person.address.postalCode">
 			</div>
-			<div>
+			<div class="form-group">
 				<label for="home-number">Home Number *</label>
-				<input id="home-number" type="text" placeholder="{{person.phoneNumber[0].number}}" ng-model="person.phoneNumber[0].number">
+				<input id="home-number" type="text" class="form-control" placeholder="{{person.phoneNumber[0].number}}" ng-model="person.phoneNumber[0].number">
 			</div>
-			<div>
+			<div class="form-group">
 				<label for="fax-number">Fax Number *</label>
-				<input id="fax-number" type="text" placeholder="{{person.phoneNumber[1].number}}" ng-model="person.phoneNumber[1].number">
+				<input id="fax-number" type="text" class="form-control" placeholder="{{person.phoneNumber[1].number}}" ng-model="person.phoneNumber[1].number">
 			</div>
 		</div>
 	</div>
-	<div class="buttons-wrap">
+	<div class="line"></div>
+	<div class="form-group pull-right">
 		<button type="button" class="modal-close btn btn-default" ng-click="cancel()">Cancel</button>
 		<button type="button" class="modal-submit btn btn-primary" ng-click="update()">Update</button>
 	</div>

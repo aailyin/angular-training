@@ -10,12 +10,12 @@
 	function PersonDetailController($scope, $routeParams, PersonService){
 		$scope.personId = $routeParams.personId;
 		$scope.person = PersonService.getUserById($scope.personId);
-		$scope.personOld = $scope.person; //TODO: need to create new object
+		$scope.personOld = angular.copy($scope.person);
 
 		/* Methods */
 		$scope.cancel = function (){
 			window.location.hash = '/list';
-			$scope.person = $scope.personOld;
+			PersonService.updateUser($scope.personOld);
 		};
 		$scope.update = function (){
 			window.location.hash = '/list';

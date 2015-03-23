@@ -1,7 +1,7 @@
 (function () {
     'use strict';
 
-    var personLibraryApp = angular.module('personLibraryApp', ['ngRoute']);
+    var personLibraryApp = angular.module('personLibraryApp', ['ngRoute', 'ngSanitize']);
 
     personLibraryApp.config(['$routeProvider', function ($routeProvider){
         $routeProvider
