@@ -9,30 +9,30 @@
 	<title>Homework 3 + Advance task</title>
 </head>
 <body ng-controller="LibraryController">
-<div class="container">
-	<div class="row">
-		<div class="person-grid-wrapper col-sm-12">
-			<div class="person-header">
-				<header>
-					<h1>Lesson 3. Homework + Advance task</h1>
-				</header>
-				<button type="button" class="btn" ng-class="showButton.btnClass" ng-click="changeBtn()">{{showButton.text}}</button>
+	<div class="container">
+		<div class="row">
+			<div class="person-grid-wrapper col-sm-12">
+				<div class="person-header">
+					<header>
+						<h1>Lesson 3. Homework + Advance task</h1>
+					</header>
+					<button type="button" class="btn" ng-class="showButton.btnClass" ng-click="changeBtn()">{{showButton.text}}</button>
+				</div>
+				<div class="line"></div>
+				<div ng-view></div>
 			</div>
-			<div class="line"></div>
-			<div ng-view></div>
 		</div>
 	</div>
-</div>
 
-<script src="../libs/angular/angular.min.js"></script>
-<script src="../libs/bower-ui-grid/ui-grid.min.js"></script>
-<script src="../libs/angular/angular-route.js"></script>
-<script src="../libs/angular/angular-sanitize.js"></script>
-<script src="../javascripts/lab3-adv/app.js"></script>
-<script src="../javascripts/lab3-adv/personService.js"></script>
-<script src="../javascripts/lab3-adv/libraryController.js"></script>
-<script src="../javascripts/lab3-adv/personGridController.js"></script>
-<script src="../javascripts/lab3-adv/customModalDirective.js"></script>
-<script src="../javascripts/lab3-adv/personEditController.js"></script>
+	<script src="../libs/angular/angular.min.js"></script>
+	<script src="../libs/bower-ui-grid/ui-grid.min.js"></script>
+	<script src="../libs/angular/angular-route.js"></script>
+	<script src="../libs/angular/angular-sanitize.js"></script>
+	<script src="../javascripts/lab3-adv/app.js"></script>
+	<script src="../javascripts/lab3-adv/personService.js"></script>
+	<script src="../javascripts/lab3-adv/libraryController.js"></script>
+	<script src="../javascripts/lab3-adv/personGridController.js"></script>
+	<script src="../javascripts/lab3-adv/customModalDirective.js"></script>
+	<script src="../javascripts/lab3-adv/personEditController.js"></script>
 </body>
 </html>

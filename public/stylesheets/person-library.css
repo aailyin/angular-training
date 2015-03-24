@@ -2,6 +2,13 @@
     outline: 0;
 }
 
+html{
+    height: 100%;
+}
+body {
+    min-height: 100%;
+}
+
 .line {
 	margin-top: 20px;
 	border-bottom: 1px solid #ddd;
@@ -29,4 +36,18 @@
 .person-grid .ui-grid-header-cell-wrapper .form-control {
     width: 100%;
     padding: 6px;
+}
+
+.error-container {
+    color: #bb1f34;
+    margin: 0.4em 0;
+}
+
+.has-error label {
+    color: #bb1f34;
+}
+
+.error-container.form-message {
+    clear: both;
+    margin: 0;
 }
