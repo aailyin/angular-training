@@ -1,10 +1,10 @@
 <div class="custom-modal" ng-show="show">
-    <div class="overlay"></div>
+    <!--<div class="overlay"></div>-->
     <div class="modal-dialog">
         <div class="modal-header">
             <header>
                 <h4>
-                   <span ng-bind="header"></span>
+                   <span ng-bind-html="header"></span>
                     <a class="close" ng-click="hideModal()">×</a>
                 </h4>
             </header>
