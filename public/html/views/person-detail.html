@@ -77,28 +77,36 @@
 						   name="home_number"
 						   type="text"
 						   class="form-control"
-						   ng-model="person.phoneNumber[0].number" ng-pattern="/^([\d]{3})([.-]{1})([\d]{3})([.-]{1})([\d]{4})$/">
-					<div class="error-container" ng-show="edit_form.home_number.$dirty && edit_form.home_number.$invalid">
-						<p class="error" ng-show="edit_form.home_number.$error.pattern">
+						   ng-model="person.phoneNumber[0].number"
+						   phone>
+					<div class="error-container" ng-show="edit_form.home_number.$invalid">
+						<p class="error">
 							Please enter correct Phone (10 digits)
 						</p>
 					</div>
 				</div>
-				<div class="form-group">
+				<div class="form-group" ng-class="{'has-error': edit_form.fax_number.$invalid}">
 					<label for="fax-number">Fax Number *</label>
-					<input id="fax-number" type="text" class="form-control" ng-model="person.phoneNumber[1].number">
-
-					<!--TODO: add the same validation as for Home Number but to write custom directive for it-->
-
+					<input id="fax-number"
+						   name="fax_number"
+						   type="text"
+						   class="form-control"
+						   ng-model="person.phoneNumber[1].number"
+						   phone>
+					<div class="error-container" ng-show="edit_form.fax_number.$invalid">
+						<p class="error">
+							Please enter correct Fax (10 digits)
+						</p>
+					</div>
 				</div>
 			</div>
 		</div>
 		<div class="line"></div>
 		<div class="form-group pull-right">
 			<button type="button" class="btn btn-default" ng-click="cancel()">Cancel</button>
-			<button type="submit" class="btn btn-primary">Update</button>
+			<button type="submit" class="btn btn-primary" ng-class="{'disabled': edit_form.$invalid}">Update</button>
 		</div>
-		<div class="error-container form-message pull-right" ng-show="edit_form.$dirty && edit_form.$invalid">
+		<div class="error-container form-message pull-right" ng-show="edit_form.$invalid">
 			<p>Please correct error in the form above</p>
 		</div>
 	</form>
