@@ -49,7 +49,8 @@
 					<span ng-repeat="phone in person.phoneNumber | filter:typeFilter(person)">{{phone.number}}</span>
 				</td>
 				<td>
-					<button type="button" class="form-control glyphicon glyphicon-edit" ng-click="toggleModal(this.person)"></button>
+					<button type="button" class="btn btn-default glyphicon glyphicon-pencil" ng-click="toggleEditModal(this.person)"></button>
+					<button type="button" class="btn btn-default glyphicon glyphicon-trash" ng-click="toggleDeleteModal(this.person)"></button>
 				</td>
 			</tr>
 			</tbody>
@@ -58,42 +59,11 @@
 	<div class="last-viewed" ng-show="lastViewed.person != null">
 		Last viewed: {{lastViewed.person.firstName}} {{lastViewed.person.lastName}}
 	</div>
-	<custom-modal header="<i>{{data.firstName}} {{data.lastName}}</i>" show="show" ok-text="Submit"
-				  cancel-text="Cancel window"
-				  oncancel="cancelFn"
-				  onsubmit="submitFn"
-				  toggle-modal="toggleModal(show)"
-				  last-viewed="lastViewed"
-				  data="data">
-		<ul>
-			<li>
-				<b>Age:</b>
-				<span>{{data.age}}</span>
-			</li>
-			<li>
-				<b>Street:</b>
-				<span>{{data.address.streetAddress}}</span>
-			</li>
-			<li>
-				<b>City:</b>
-				<span>{{data.address.city}}</span>
-			</li>
-			<li>
-				<b>State:</b>
-				<span>{{data.address.state}}</span>
-			</li>
-			<li>
-				<b>Postal Code:</b>
-				<span>{{data.address.postalCode}}</span>
-			</li>
-			<li>
-				<b>Home Number:</b>
-				<span>{{data.phoneNumber[0].number}}</span>
-			</li>
-			<li>
-				<b>Fax Number:</b>
-				<span>{{data.phoneNumber[1].number}}</span>
-			</li>
-		</ul>
-	</custom-modal>
+	<edit-person-modal show-edit="showEdit"
+				  toggle-edit-modal="toggleEditModal()"
+				  edit-person="editPerson">
+	</edit-person-modal>
+	<delete-person-modal show-delete="showDelete"
+						toggle-delete-modal="toggleDeleteModal()"
+						delete-person="deletePerson"></delete-person-modal>
 </div>
