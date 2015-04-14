@@ -10,4 +10,15 @@ router.get('/users', function (req, res){
     res.end(personsStr);
 });
 
+router.delete('/users/:id', function (req, res){
+    var personsStr = JSON.stringify(userService.deletePerson(req.params.id));
+    res.setHeader('Content-Type', 'application/json');
+    res.setHeader('Content-Length', personsStr.length);
+    res.end(personsStr);
+});
+
+router.post('/users', function (req, res){
+    //TODO: add functionality to save new person and return all array
+});
+
 module.exports = router;

@@ -10,9 +10,9 @@
     //////////////////////////////
     function PersonService($http) {
         var me = this;
-        this.persons = null;
+        this.persons = [];
         this.getPersons = function () {
-            if(this.persons === null){
+            if(this.persons.length == 0){
                 return this.loadPersons();
             }
             return this.persons;

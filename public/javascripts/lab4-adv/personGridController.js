@@ -12,6 +12,7 @@
         $scope.show = false;
         $scope.showEdit = false;
         $scope.showDelete = false;
+        $scope.showAdd = false;
         $scope.editPerson = {};
         $scope.deletePerson = {};
         $scope.query = '';
@@ -22,8 +23,7 @@
             top: 'glyphicon glyphicon-triangle-top'
         };
 
-
-        //TODO: to find way how to get the same result with personService
+        //TODO: move all http requests into service
         $scope.activate = function () {
             var req = {
                 method: 'GET',
@@ -34,6 +34,27 @@
                     $scope.persons = resp.data;
                 })
                 .catch(function (e){});
+        };
+
+        $scope.removePerson = function (person) {
+            var url = '/users/' + person.id;
+            var req = {
+                method: 'DELETE',
+                url: url
+            };
+            $http(req)
+                .then(function (resp){
+                    $scope.persons = resp.data;
+                    $scope.message = {'action': 'remove', type: 'success'};
+                    $scope.toggleDeleteModal();
+                })
+                .catch(function (e){
+                    $scope.toggleDeleteModal();
+                });
+        };
+
+        $scope.addPerson = function (){
+            //TODO: req add new person
         };
 
         /* Methods */
@@ -50,6 +71,9 @@
                 $scope.person = data;
             }
             $scope.show = !$scope.show;
+        };
+        $scope.toggleAddModal = function () {
+            $scope.showAdd = !$scope.showAdd;
         };
         $scope.toggleEditModal = function (person) {
             if(person){

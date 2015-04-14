@@ -1,5 +1,10 @@
 <div>
-
+	<!-- TODO: add messages object in all service response callbacks -->
+	<div ng-if="message">
+		<div class="alert" ng-class="{'alert-success': message.type == 'success', 'alert-danger': message.type == 'danger'}">
+			<strong><span style="text-transform: capitalize;">{{message.action}}</span> was <span ng-if="message.type == 'danger'">un</span>successful!</strong>
+		</div>
+	</div>
 	<div class="person-grid">
 		<input type="text" class="form-control" placeholder="Enter text to filter persons" ng-model="query">
 		<div class="line"></div>
@@ -59,11 +64,19 @@
 	<div class="last-viewed" ng-show="lastViewed.person != null">
 		Last viewed: {{lastViewed.person.firstName}} {{lastViewed.person.lastName}}
 	</div>
+	<button class="btn btn-primary" ng-click="toggleAddModal()"><span class="glyphicon glyphicon-plus"></span>&#32;Add New Person</button>
+
+	<!-- TODO: try use only one modal popup for all actions -->
 	<edit-person-modal show-edit="showEdit"
 				  toggle-edit-modal="toggleEditModal()"
 				  edit-person="editPerson">
 	</edit-person-modal>
 	<delete-person-modal show-delete="showDelete"
 						toggle-delete-modal="toggleDeleteModal()"
-						delete-person="deletePerson"></delete-person-modal>
+						delete-person="deletePerson"
+						remove-person="removePerson({id : deletePerson.id})"></delete-person-modal>
+	<add-person-modal show-add="showAdd"
+						toggle-add-modal="toggleAddModal()"
+						add-person="addPerson()"></add-person-modal>
+
 </div>

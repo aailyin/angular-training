@@ -72,7 +72,7 @@ function getPersons(){
 }
 
 function updatePerson(data){
-	for(var i = 0; i < persons; i++){
+	for(var i = 0; i < persons.length; i++){
 		if(persons[i].id === data.id){
 			persons[i] = data;
 			return true;
@@ -81,5 +81,17 @@ function updatePerson(data){
 	return false;
 }
 
+function deletePerson(personId){
+	var id = parseInt(personId, 10);
+	for(var i = 0; i < persons.length; i++){
+		if(persons[i].id === id){
+			persons.splice(i, 1);
+			return persons;
+		}
+	}
+	return false;
+}
+
 exports.getPersons = getPersons;
 exports.updatePerson = updatePerson;
+exports.deletePerson = deletePerson;

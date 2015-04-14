@@ -1,0 +1,176 @@
+<div class="custom-modal add-person" ng-show="showAdd">
+	<div class="modal-dialog">
+		<div class="modal-header">
+			<header>
+				<h4>
+					<span>Add Person</span>
+					<a class="close" ng-click="cancel()">×</a>
+				</h4>
+			</header>
+		</div>
+		<div class="modal-content">
+			<div class="content">
+				<div class="detail-person-wrapper">
+					<form name="edit_form" novalidate ng-submit="update()">
+						<div class="details row">
+							<div class="col-sm-6 col-xs-6">
+								<div class="form-group" ng-class="{'has-error': edit_form.firstname.$invalid}">
+									<label for="firstname">First Name *</label>
+									<input id="firstname"
+										   name="firstname"
+										   type="string"
+										   class="form-control"
+										   ng-model="person.firstName"
+										   ng-minlength="1"
+										   ng-maxlength="20"
+										   ng-pattern="/^[a-zA-Z\s-]*$/"
+										   required>
+									<div class="error-container" ng-show="edit_form.firstname.$dirty || edit_form.firstname.$invalid">
+										<p class="error" ng-show="edit_form.firstname.$error.required">
+											First Name is required
+										</p>
+										<p class="error" ng-show="edit_form.firstname.$error.minlength">
+											First Name should be more than 0
+										</p>
+										<p class="error" ng-show="edit_form.firstname.$error.maxlength">
+											First Name should be less than 20
+										</p>
+										<p class="error" ng-show="edit_form.firstname.$error.pattern">
+											Input only letters, please!
+										</p>
+									</div>
+								</div>
+								<div class="form-group" ng-class="{'has-error': edit_form.lastname.$invalid}">
+									<label for="lastname">Last Name *</label>
+									<input id="lastname"
+										   name="lastname"
+										   type="string"
+										   class="form-control"
+										   ng-model="person.lastName"
+										   ng-minlength="1"
+										   ng-maxlength="20"
+										   ng-pattern="/^[a-zA-Z\s-]*$/"
+										   required>
+									<div class="error-container" ng-show="edit_form.lastname.$dirty || edit_form.lastname.$invalid">
+										<p class="error" ng-show="edit_form.lastname.$error.required">
+											Last Name is required
+										</p>
+										<p class="error" ng-show="edit_form.lastname.$error.minlength">
+											Last Name should be more than o
+										</p>
+										<p class="error" ng-show="edit_form.lastname.$error.maxlength">
+											Last Name should be less than 20
+										</p>
+										<p class="error" ng-show="edit_form.lastname.$error.pattern">
+											Input only letters, please!
+										</p>
+									</div>
+								</div>
+								<div class="form-group" ng-class="{'has-error': edit_form.age.$invalid}">
+									<label for="age">Age *</label>
+									<input id="age"
+										   name="age"
+										   type="number"
+										   class="form-control"
+										   ng-model="person.age"
+										   ng-min="1"
+										   ng-max="199"
+										   required>
+									<div class="error-container" ng-show="edit_form.age.$dirty || edit_form.age.$invalid">
+										<p class="error" ng-show="edit_form.age.$error.required">
+											Age is required
+										</p>
+										<p class="error" ng-show="edit_form.age.$error.min">
+											Age should be more than 0
+										</p>
+										<p class="error" ng-show="edit_form.age.$error.max">
+											Age should be less than 199
+										</p>
+										<p class="error" ng-show="edit_form.age.$error.number">
+											Input only numbers, please!
+										</p>
+									</div>
+								</div>
+								<div class="form-group">
+									<label for="street">Street</label>
+									<input id="street" type="text" class="form-control" ng-model="person.address.streetAddress">
+								</div>
+								<div class="form-group" ng-class="{'has-error': edit_form.city.$invalid}">
+									<label for="city">City *</label>
+									<input id="city"
+										   name="city"
+										   type="text"
+										   class="form-control"
+										   ng-model="person.address.city"
+										   ng-minlength="3"
+										   ng-maxlength="50"
+										   ng-pattern="/^[a-zA-Z\s]*$/"
+										   required>
+									<div class="error-container" ng-show="edit_form.city.$dirty || edit_form.city.$invalid">
+										<p class="error" ng-show="edit_form.city.$error.required">
+											City is required
+										</p>
+										<p class="error" ng-show="edit_form.city.$error.minlength">
+											Min length is 3 characters
+										</p>
+										<p class="error" ng-show="edit_form.city.$error.maxlength">
+											Max length is 50 characters
+										</p>
+										<p class="error" ng-show="edit_form.city.$error.pattern">
+											Are you from other planet? No? Then enter only the letters, please!
+										</p>
+									</div>
+								</div>
+							</div>
+							<div class="col-sm-6 col-xs-6">
+								<div class="form-group">
+									<label for="state">State</label>
+									<input id="state" type="text" class="form-control" ng-model="person.address.state">
+								</div>
+								<div class="form-group" >
+									<label for="postal-code">Postal Code</label>
+									<input id="postal-code" type="text" class="form-control" ng-model="person.address.postalCode">
+								</div>
+								<div class="form-group" ng-class="{'has-error': edit_form.home_number.$invalid}">
+									<label for="home-number">Home Number *</label>
+									<input id="home-number"
+										   name="home_number"
+										   type="text"
+										   class="form-control"
+										   ng-model="person.phoneNumber[0].number"
+										   phone>
+									<div class="error-container" ng-show="edit_form.home_number.$invalid">
+										<p class="error">
+											Please enter correct Phone (10 digits)
+										</p>
+									</div>
+								</div>
+								<div class="form-group" ng-class="{'has-error': edit_form.fax_number.$invalid}">
+									<label for="fax-number">Fax Number *</label>
+									<input id="fax-number"
+										   name="fax_number"
+										   type="text"
+										   class="form-control"
+										   ng-model="person.phoneNumber[1].number"
+										   phone>
+									<div class="error-container" ng-show="edit_form.fax_number.$invalid">
+										<p class="error">
+											Please enter correct Fax (10 digits)
+										</p>
+									</div>
+								</div>
+							</div>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+		<div class="line"></div>
+		<div class="modal-buttons">
+			<div class="modal-buttons pull-right">
+				<button type="button" class="btn btn-default" ng-click="cancel()">Cancel</button>
+				<button type="submit" class="btn btn-primary" ng-class="{'disabled': edit_form.$invalid}">Submit</button>
+			</div>
+		</div>
+	</div>
+</div>

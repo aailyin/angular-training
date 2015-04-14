@@ -14,11 +14,12 @@
 			scope: {
 				showDelete: '=',
 				deletePerson: '=',
-				toggleDeleteModal: '&'
+				toggleDeleteModal: '&',
+				removePerson: '&'
 			},
 			link: function (scope, element, attrs) {
 				scope.delete = function (){
-					//TODO: ajax-request to remove person from list
+					scope.removePerson();
 				};
 				scope.cancel = function (){
 					scope.toggleDeleteModal();
