@@ -5,22 +5,35 @@
         .module('personLibraryApp')
         .controller('PersonGridController', PersonGridController);
 
-    PersonGridController.$inject = ['$scope', 'PersonService'];
+    PersonGridController.$inject = ['$scope', '$http', 'PersonService'];
 
     /////////////////////////
-    function PersonGridController($scope, PersonService) {
+    function PersonGridController($scope, $http, PersonService) {
         $scope.show = false;
         $scope.showEdit = false;
         $scope.showDelete = false;
         $scope.editPerson = {};
         $scope.deletePerson = {};
         $scope.query = '';
-        $scope.persons = PersonService.getItems();
         $scope.phoneType = 'home';
         $scope.reverse = false;
         $scope.arrowsCls = {
             bottom: 'glyphicon glyphicon-triangle-bottom',
             top: 'glyphicon glyphicon-triangle-top'
+        };
+
+
+        //TODO: to find way how to get the same result with personService
+        $scope.activate = function () {
+            var req = {
+                method: 'GET',
+                url: '/users'
+            };
+            $http(req)
+                .then(function (resp){
+                    $scope.persons = resp.data;
+                })
+                .catch(function (e){});
         };
 
         /* Methods */
@@ -63,6 +76,8 @@
         $scope.submitFn = function () {
             console.log('submit');
         };
+
+        $scope.activate();
     }
 })();
 
