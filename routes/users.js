@@ -1,26 +1,38 @@
+"use strict";
+
+//Requires
 var express = require('express');
 var router = express.Router();
 var userService = require('../service/users.service');
 
+//Exports
+module.exports = router;
 
+//Setup routing
 router.get('/users', function (req, res){
     var personsStr = JSON.stringify(userService.getPersons());
-    res.setHeader('Content-Type', 'application/json');
-    res.setHeader('Content-Length', personsStr.length);
-    res.end(personsStr);
+    sendJSON(personsStr, res)
 });
 
 router.delete('/users/:id', function (req, res){
     var personsStr = JSON.stringify(userService.deletePerson(req.params.id));
-    res.setHeader('Content-Type', 'application/json');
-    res.setHeader('Content-Length', personsStr.length);
-    res.end(personsStr);
+    sendJSON(personsStr, res);
+});
+
+router.post('/users/:id', function (req, res){
+    var personsStr = JSON.stringify(userService.updatePerson(req.params.id, req.body));
+    sendJSON(personsStr, res);
 });
 
 router.post('/users', function (req, res){
-    var person = req.body.person
-
-    //TODO: add functionality to save new person and return all array
+    var personsStr = JSON.stringify(userService.addPerson(req.body));
+    sendJSON(personsStr, res);
 });
 
-module.exports = router;
+///////////////////////////////
+//Othee necessary functions
+function sendJSON(json, res){
+    res.setHeader('Content-Type', 'application/json');
+    res.setHeader('Content-Length', json.length);
+    res.end(json);
+}

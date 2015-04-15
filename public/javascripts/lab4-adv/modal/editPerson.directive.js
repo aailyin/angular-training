@@ -14,12 +14,13 @@
 			scope: {
 				showEdit: '=',
 				editPerson: '=',
-				toggleEditModal: '&'
+				toggleEditModal: '&',
+				updatePerson: '&'
 			},
 			link: function (scope, element, attrs){
 				scope.person = angular.copy(scope.editPerson);
 				scope.submit = function (){
-					//TODO: ajax-request to update person data
+					scope.updatePerson({value: scope.person});
 				};
 				scope.cancel = function (){
 					scope.toggleEditModal();

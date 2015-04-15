@@ -15,7 +15,27 @@
         $scope.showAdd = false;
         $scope.editPerson = {};
         $scope.deletePerson = {};
-        $scope.newPerson = {};
+        $scope.newPerson = {
+            "firstName": "",
+            "lastName": "",
+            "age": null,
+            "address": {
+                "streetAddress": "",
+                "city": "",
+                "state": "",
+                "postalCode": ""
+            },
+            "phoneNumber": [
+                {
+                    "type": "home",
+                    "number": ""
+                },
+                {
+                    "type": "fax",
+                    "number": ""
+                }
+            ]
+        };
         $scope.query = '';
         $scope.phoneType = 'home';
         $scope.reverse = false;
@@ -67,7 +87,25 @@
                     $scope.toggleAddModal();
                 })
                 .catch(function (e){
-                    $scope.toggleDeleteModal();
+                    $scope.toggleAddModal();
+                });
+        };
+
+        $scope.updatePerson = function (person){
+            var url = '/users/' + person.id;
+            var req = {
+                method: 'POST',
+                url: url,
+                data: person
+            };
+            $http(req)
+                .then(function (resp){
+                    $scope.persons = resp.data;
+                    $scope.message = {'action': 'update', type: 'success'};
+                    $scope.toggleEditModal();
+                })
+                .catch(function (e){
+                    $scope.toggleEditModal();
                 });
         };
 
@@ -113,6 +151,9 @@
         };
         $scope.submitFn = function () {
             console.log('submit');
+        };
+        $scope.closeMessage = function (){
+            delete $scope.message;
         };
 
         $scope.activate();

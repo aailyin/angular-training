@@ -1,4 +1,6 @@
-var persons = [
+var _id = 100000;
+
+var _persons = [
 	{
 		"id": 13457,
 		"firstName": "John",
@@ -68,14 +70,15 @@ var persons = [
 ];
 
 function getPersons(){
-	return persons;
+	return _persons;
 }
 
-function updatePerson(data){
-	for(var i = 0; i < persons.length; i++){
-		if(persons[i].id === data.id){
-			persons[i] = data;
-			return true;
+function updatePerson(personId, data){
+	var id = parseInt(personId, 10);
+	for(var i = 0; i < _persons.length; i++){
+		if(_persons[i].id === id){
+			_persons[i] = data;
+			return _persons;
 		}
 	}
 	return false;
@@ -83,15 +86,22 @@ function updatePerson(data){
 
 function deletePerson(personId){
 	var id = parseInt(personId, 10);
-	for(var i = 0; i < persons.length; i++){
-		if(persons[i].id === id){
-			persons.splice(i, 1);
-			return persons;
+	for(var i = 0; i < _persons.length; i++){
+		if(_persons[i].id === id){
+			_persons.splice(i, 1);
+			return _persons;
 		}
 	}
 	return false;
 }
 
+function addPerson(person){
+	person.person.id = _id++;
+	_persons.push(person.person);
+	return _persons;
+}
+
 exports.getPersons = getPersons;
 exports.updatePerson = updatePerson;
 exports.deletePerson = deletePerson;
+exports.addPerson = addPerson;

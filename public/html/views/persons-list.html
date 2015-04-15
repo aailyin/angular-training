@@ -3,6 +3,7 @@
 	<div ng-if="message">
 		<div class="alert" ng-class="{'alert-success': message.type == 'success', 'alert-danger': message.type == 'danger'}">
 			<strong><span style="text-transform: capitalize;">{{message.action}}</span> was <span ng-if="message.type == 'danger'">un</span>successful!</strong>
+			<button type="button" class="close" ng-click="closeMessage()">x</button>
 		</div>
 	</div>
 	<div class="person-grid">
@@ -69,7 +70,8 @@
 	<!-- TODO: try use only one modal popup for all actions -->
 	<edit-person-modal show-edit="showEdit"
 				  toggle-edit-modal="toggleEditModal()"
-				  edit-person="editPerson">
+				  edit-person="editPerson"
+			update-person="updatePerson(value)">
 	</edit-person-modal>
 	<delete-person-modal show-delete="showDelete"
 						toggle-delete-modal="toggleDeleteModal()"
