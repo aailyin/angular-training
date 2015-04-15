@@ -18,6 +18,8 @@ router.delete('/users/:id', function (req, res){
 });
 
 router.post('/users', function (req, res){
+    var person = req.body.person
+
     //TODO: add functionality to save new person and return all array
 });
 

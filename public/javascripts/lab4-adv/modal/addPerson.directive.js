@@ -13,32 +13,14 @@
 			replace: true,
 			scope: {
 				showAdd: '=',
-				toggleAddModal: '&'
+				toggleAddModal: '&',
+				addPerson: '&',
+				newPerson: '='
 			},
 			link: function (scope, element, attrs) {
-				scope.person = {
-					"firstName": "",
-					"lastName": "",
-					"age": null,
-					"address": {
-						"streetAddress": "",
-						"city": "",
-						"state": "",
-						"postalCode": ""
-					},
-					"phoneNumber": [
-						{
-							"type": "home",
-							"number": ""
-						},
-						{
-							"type": "fax",
-							"number": ""
-						}
-					]
-				};
-				scope.delete = function (){
-					scope.removePerson();
+				scope.person = scope.newPerson;
+				scope.submit = function (){
+					scope.addPerson(scope.person);
 				};
 				scope.cancel = function (){
 					scope.toggleAddModal();

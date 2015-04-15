@@ -15,6 +15,7 @@
         $scope.showAdd = false;
         $scope.editPerson = {};
         $scope.deletePerson = {};
+        $scope.newPerson = {};
         $scope.query = '';
         $scope.phoneType = 'home';
         $scope.reverse = false;
@@ -53,8 +54,21 @@
                 });
         };
 
-        $scope.addPerson = function (){
-            //TODO: req add new person
+        $scope.addPerson = function (person){
+            var req = {
+                method: 'POST',
+                url: '/users',
+                data: person
+            };
+            $http(req)
+                .then(function (resp){
+                    $scope.persons = resp.data;
+                    $scope.message = {'action': 'add', type: 'success'};
+                    $scope.toggleAddModal();
+                })
+                .catch(function (e){
+                    $scope.toggleDeleteModal();
+                });
         };
 
         /* Methods */
