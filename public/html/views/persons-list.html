@@ -67,6 +67,28 @@
 	</div>
 	<button class="btn btn-primary" ng-click="toggleAddModal()"><span class="glyphicon glyphicon-plus"></span>&#32;Add New Person</button>
 
+	<!--Edit person modal-->
+	<custom-modal header="{{data.firstName}} {{data.lastName}}"
+				  show="show.update"
+				  person="person"
+				  onsubmit="updatePerson(value)">
+	</custom-modal>
+
+	<!--Delete person modal-->
+	<custom-modal header="Delete Person"
+				  show="show.delete"
+				  ok-text="Delete"
+				  person="person"
+				  onsubmit="removePerson(value)">
+	</custom-modal>
+
+	<!--Add person modal-->
+	<custom-modal header="Add Person"
+				  show="show.add"
+				  person="person"
+				  onsubmit="addPerson(value)">
+	</custom-modal>
+
 	<!-- TODO: try use only one modal popup for all actions -->
 	<edit-person-modal show-edit="showEdit"
 				  toggle-edit-modal="toggleEditModal()"

@@ -20,7 +20,7 @@
                 data: '='
             },
             link: function (scope, element, attrs) {
-                scope.okText = attrs.okText || "OK";
+                scope.okText = attrs.okText || "Submit";
                 scope.cancelText = attrs.cancelText || "Cancel";
                 if(attrs.oncancel){
                     scope.hideOutFn = scope[attrs.oncancel];

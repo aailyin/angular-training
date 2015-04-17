@@ -9,33 +9,13 @@
 
     /////////////////////////
     function PersonGridController($scope, $http, PersonService) {
-        $scope.show = false;
-        $scope.showEdit = false;
-        $scope.showDelete = false;
-        $scope.showAdd = false;
-        $scope.editPerson = {};
-        $scope.deletePerson = {};
-        $scope.newPerson = {
-            "firstName": "",
-            "lastName": "",
-            "age": null,
-            "address": {
-                "streetAddress": "",
-                "city": "",
-                "state": "",
-                "postalCode": ""
-            },
-            "phoneNumber": [
-                {
-                    "type": "home",
-                    "number": ""
-                },
-                {
-                    "type": "fax",
-                    "number": ""
-                }
-            ]
+
+        $scope.show = {
+            add: false,
+            update: false,
+            delete: false
         };
+        $scope.person = {};
         $scope.query = '';
         $scope.phoneType = 'home';
         $scope.reverse = false;
@@ -44,68 +24,60 @@
             top: 'glyphicon glyphicon-triangle-top'
         };
 
+        $scope.addNewPerson = function () {
+            var emptyPerson =  {
+                "firstName": "",
+                "lastName": "",
+                "age": null,
+                "address": {
+                    "streetAddress": "",
+                    "city": "",
+                    "state": "",
+                    "postalCode": ""
+                },
+                "phoneNumber": [
+                    {
+                        "type": "home",
+                        "number": ""
+                    },
+                    {
+                        "type": "fax",
+                        "number": ""
+                    }
+                ]
+            };
+            $scope.toggleModal('add', emptyPerson);
+        };
+
         //TODO: move all http requests into service
         $scope.activate = function () {
-            var req = {
-                method: 'GET',
-                url: '/users'
-            };
-            $http(req)
-                .then(function (resp){
-                    $scope.persons = resp.data;
-                })
-                .catch(function (e){});
+            PersonService.loadPersons()
+                .then(function (persons){
+                    $scope.persons = persons;
+                });
         };
 
         $scope.removePerson = function (person) {
-            var url = '/users/' + person.id;
-            var req = {
-                method: 'DELETE',
-                url: url
-            };
-            $http(req)
-                .then(function (resp){
-                    $scope.persons = resp.data;
-                    $scope.message = {'action': 'remove', type: 'success'};
-                    $scope.toggleDeleteModal();
-                })
-                .catch(function (e){
-                    $scope.toggleDeleteModal();
+            PersonService.removePerson(person)
+                .then(function (message){
+                    $scope.message = message;
+                    $scope.toggleModal('delete');
                 });
         };
 
         $scope.addPerson = function (person){
-            var req = {
-                method: 'POST',
-                url: '/users',
-                data: person
-            };
-            $http(req)
-                .then(function (resp){
-                    $scope.persons = resp.data;
-                    $scope.message = {'action': 'add', type: 'success'};
-                    $scope.toggleAddModal();
-                })
-                .catch(function (e){
-                    $scope.toggleAddModal();
+            PersonService.addPerson(person)
+                .then(function (message){
+                    $scope.message = message;
+                    $scope.toggleModal('add');
                 });
         };
 
         $scope.updatePerson = function (person){
-            var url = '/users/' + person.id;
-            var req = {
-                method: 'POST',
-                url: url,
-                data: person
-            };
-            $http(req)
-                .then(function (resp){
-                    $scope.persons = resp.data;
-                    $scope.message = {'action': 'update', type: 'success'};
-                    $scope.toggleEditModal();
-                })
-                .catch(function (e){
-                    $scope.toggleEditModal();
+            PersonService.updatePerson(person)
+                .then(function (message){
+                    $scope.message = message;
+                    $scope.toggleModal('update');
                 });
         };
 
@@ -118,39 +90,15 @@
                 }
             }
         };
-        $scope.toggleModal = function (data) {
+        $scope.toggleModal = function (type, data) {
             if(data){
                 $scope.person = data;
             }
-            $scope.show = !$scope.show;
-        };
-        $scope.toggleAddModal = function () {
-            $scope.showAdd = !$scope.showAdd;
-        };
-        $scope.toggleEditModal = function (person) {
-            if(person){
-                $scope.editPerson = person;
-            }
-            $scope.showEdit = !$scope.showEdit;
-        };
-        $scope.toggleDeleteModal = function (person) {
-            if(person){
-                $scope.deletePerson = person;
-            }
-            $scope.showDelete = !$scope.showDelete;
-        };
-        $scope.hideModal = function () {
-            $scope.toggleModal({show: false});
+            $scope.show[type] = !$scope.show[type];
         };
         $scope.setPredAndRev = function (predicate, reverse) {
             $scope.predicate = predicate;
             $scope.reverse = reverse;
-        };
-        $scope.cancelFn = function () {
-            console.log('cancel');
-        };
-        $scope.submitFn = function () {
-            console.log('submit');
         };
         $scope.closeMessage = function (){
             delete $scope.message;
