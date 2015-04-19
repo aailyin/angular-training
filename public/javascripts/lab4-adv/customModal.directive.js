@@ -14,34 +14,32 @@
             replace: true,
             scope: {
                 header: '@',
-                toggleModal: '&',
                 show: '=',
-                lastViewed: '=',
-                data: '='
+                person: '=',
+                onsubmit: '&',
+                oncancel: '&'
             },
-            link: function (scope, element, attrs) {
+            link: function (scope, element, attrs, ctrl) {
                 scope.okText = attrs.okText || "Submit";
                 scope.cancelText = attrs.cancelText || "Cancel";
-                if(attrs.oncancel){
-                    scope.hideOutFn = scope[attrs.oncancel];
-                }
-                if(attrs.onsubmit){
-                    scope.submitOutFn = scope[attrs.onsubmit];
-                }
                 scope.hideModal = function () {
-                    if(this.hideOutFn){
-                        this.hideOutFn();
-                    }
-                    scope.toggleModal({show: false});
+                    scope.oncancel();
+                    scope.show = false;
                 };
                 scope.submitModal = function () {
-                    if(this.submitOutFn){
-                        this.submitOutFn();
-                    }
-                    scope.lastViewed.person = scope.data;
-                    scope.toggleModal();
+                    scope.onsubmit();
                 };
+                scope.check = function (a, b, c){
+                    console.log('herererer');
+                }
             }
+            /*controller: function ($scope){
+                $scope.$watch('edit_form.$valid', function (newVal, oldVal){
+                    $scope.isInfoValid = newVal;
+                    console.log('here: ' + $scope.edit_form);
+                });
+            }*/
+
         };
     }
 })();

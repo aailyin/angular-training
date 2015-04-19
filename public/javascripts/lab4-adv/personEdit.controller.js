@@ -10,8 +10,7 @@
 	function PersonDetailController($scope, $routeParams, PersonService){
 		$scope.personId = $routeParams.personId;
 
-		//TODO: check after adding PersonService functionality for PersonGridController
-		$scope.person = PersonService.getUserById($scope.personId);
+		$scope.person = PersonService.getPersonById($scope.personId) || {};
 		$scope.personOld = angular.copy($scope.person);
 
 		/* Methods */

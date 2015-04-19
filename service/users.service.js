@@ -96,8 +96,8 @@ function deletePerson(personId){
 }
 
 function addPerson(person){
-	person.person.id = _id++;
-	_persons.push(person.person);
+	person.id = _id++;
+	_persons.push(person);
 	return _persons;
 }
 

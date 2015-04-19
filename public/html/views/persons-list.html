@@ -55,8 +55,8 @@
 					<span ng-repeat="phone in person.phoneNumber | filter:typeFilter(person)">{{phone.number}}</span>
 				</td>
 				<td>
-					<button type="button" class="btn btn-default glyphicon glyphicon-pencil" ng-click="toggleEditModal(this.person)"></button>
-					<button type="button" class="btn btn-default glyphicon glyphicon-trash" ng-click="toggleDeleteModal(this.person)"></button>
+					<button type="button" class="btn btn-default glyphicon glyphicon-pencil" ng-click="toggleModal('update', this.person)"></button>
+					<button type="button" class="btn btn-default glyphicon glyphicon-trash" ng-click="toggleModal('delete', this.person)"></button>
 				</td>
 			</tr>
 			</tbody>
@@ -65,13 +65,14 @@
 	<div class="last-viewed" ng-show="lastViewed.person != null">
 		Last viewed: {{lastViewed.person.firstName}} {{lastViewed.person.lastName}}
 	</div>
-	<button class="btn btn-primary" ng-click="toggleAddModal()"><span class="glyphicon glyphicon-plus"></span>&#32;Add New Person</button>
+	<button class="btn btn-primary" ng-click="addNewPerson()"><span class="glyphicon glyphicon-plus"></span>&#32;Add New Person</button>
 
 	<!--Edit person modal-->
-	<custom-modal header="{{data.firstName}} {{data.lastName}}"
+	<custom-modal header="{{person.firstName}} {{person.lastName}}"
 				  show="show.update"
 				  person="person"
-				  onsubmit="updatePerson(value)">
+				  onsubmit="updatePerson()">
+		<div ng-include src="'../templates/updatePerson.html'"></div>
 	</custom-modal>
 
 	<!--Delete person modal-->
@@ -79,29 +80,16 @@
 				  show="show.delete"
 				  ok-text="Delete"
 				  person="person"
-				  onsubmit="removePerson(value)">
+				  onsubmit="removePerson()">
+		<p>Are you sure you want to remove {{person.firstName}} {{person.lastName}} from the list?</p>
 	</custom-modal>
 
 	<!--Add person modal-->
 	<custom-modal header="Add Person"
 				  show="show.add"
 				  person="person"
-				  onsubmit="addPerson(value)">
+				  onsubmit="addPerson()">
+		<div ng-include src="'../templates/addPerson.html'"></div>
 	</custom-modal>
-
-	<!-- TODO: try use only one modal popup for all actions -->
-	<edit-person-modal show-edit="showEdit"
-				  toggle-edit-modal="toggleEditModal()"
-				  edit-person="editPerson"
-			update-person="updatePerson(value)">
-	</edit-person-modal>
-	<delete-person-modal show-delete="showDelete"
-						toggle-delete-modal="toggleDeleteModal()"
-						delete-person="deletePerson"
-						remove-person="removePerson({id : deletePerson.id})"></delete-person-modal>
-	<add-person-modal show-add="showAdd"
-						toggle-add-modal="toggleAddModal()"
-						add-person="addPerson({person: newPerson})"
-						new-person="newPerson"></add-person-modal>
 
 </div>

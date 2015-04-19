@@ -5,17 +5,17 @@
         .module('personLibraryApp')
         .factory('PersonService', PersonService);
 
-    PersonService.$inject = ['$http'];
+    PersonService.$inject = ['$http', '$filter'];
 
-    function PersonService($http) {
+    function PersonService($http, $filter) {
 
         var service = {
             persons: [],
-            getPersons: getPersons,
             loadPersons: loadPersons,
             addPerson: addPerson,
             updatePerson: updatePerson,
-            removePerson: removePerson
+            removePerson: removePerson,
+            getPersonById: getPersonById
         };
 
         return service;
@@ -66,7 +66,7 @@
                     return {'action': 'add', type: 'success'};
                 })
                 .catch(function (e){
-                    return {'action': 'add', type: 'error'};
+                    return {'action': 'add', type: 'danger'};
                 });
         }
         /**
@@ -81,13 +81,13 @@
                 url: url,
                 data: person
             };
-            $http(req)
+            return $http(req)
                 .then(function (resp){
                     service.persons = resp.data;
                     return {'action': 'update', type: 'success'};
                 })
                 .catch(function (e){
-                    return {'action': 'update', type: 'error'};
+                    return {'action': 'update', type: 'danger'};
                 });
         }
         /**
@@ -101,14 +101,17 @@
                 method: 'DELETE',
                 url: url
             };
-            $http(req)
+            return $http(req)
                 .then(function (resp){
                     service.persons = resp.data;
                     return {'action': 'delete', type: 'success'};
                 })
                 .catch(function (e){
-                    return {'action': 'delete', type: 'error'};
+                    return {'action': 'delete', type: 'danger'};
                 });
+        }
+        function getPersonById(id){
+            return $filter('filter')(service.persons, {id: id})[0];
         }
         /**
          *
