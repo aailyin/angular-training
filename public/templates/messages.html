@@ -1,0 +1,6 @@
+<div ng-show="message">
+	<div class="alert" ng-class="{'alert-success': message.type == 'success', 'alert-danger': message.type == 'danger'}">
+		<strong><span style="text-transform: capitalize;">{{message.action}}</span> was <span ng-if="message.type == 'danger'">un</span>successful!</strong>
+		<button type="button" class="close" ng-click="closeMessage()">x</button>
+	</div>
+</div>

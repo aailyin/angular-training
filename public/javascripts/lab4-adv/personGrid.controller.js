@@ -5,15 +5,12 @@
         .module('personLibraryApp')
         .controller('PersonGridController', PersonGridController);
 
-    PersonGridController.$inject = ['$scope','PersonService'];
+    PersonGridController.$inject = ['$scope', 'PersonService'];
 
     /////////////////////////
     function PersonGridController($scope, PersonService) {
-        $scope.show = {
-            add: false,
-            update: false,
-            delete: false
-        };
+        /* Variables */
+        $scope.forms = {};
         $scope.person = {};
         $scope.query = '';
         $scope.phoneType = 'home';
@@ -22,27 +19,52 @@
             bottom: 'glyphicon glyphicon-triangle-bottom',
             top: 'glyphicon glyphicon-triangle-top'
         };
+        $scope.show = {
+            add: false,
+            update: false,
+            delete: false
+        };
 
-        $scope.activate = function () {
+        /* Methods */
+        $scope.watchPersonsModel = watchPersonsModel;
+        $scope.addNewPerson = addNewPerson;
+        $scope.addPerson = addPerson;
+        $scope.removePerson = removePerson;
+        $scope.updatePerson = updatePerson;
+        $scope.toggleModal = toggleModal;
+        $scope.setPredAndRev = setPredAndRev;
+        $scope.closeMessage = closeMessage;
+
+        activate();
+
+
+        //////////////////////////////////////////////
+        /**
+         * Activate PersonGridController loading all persons from server
+         */
+        function activate() {
+            $scope.watchPersonsModel();
             PersonService.loadPersons()
                 .then(function (persons){
                     $scope.persons = persons;
                 });
-        };
+        }
 
-        //it should works -_-
-        /*$scope.$watch('PersonService.persons', function (newVal, oldVal){
-            console.log('here');
-            $scope.persons = newVal;
-        });*/
+        /**
+         * Start watch loaded persons model in PersonService.persons
+         */
+        function watchPersonsModel(){
+            $scope.$watch(
+                function(){ return PersonService.persons; },
+                function (newVal, oldVal){
+                    $scope.persons = newVal;
+            });
+        }
 
-        $scope.isInfoValid = function () {
-            if($scope.edit_form){
-                return $scope.edit_form.$valid;
-            }
-        };
-
-        $scope.addNewPerson = function () {
+        /**
+         * Open "Add person" modal creating an empty model
+         */
+        function addNewPerson() {
             var emptyPerson =  {
                 "firstName": "",
                 "lastName": "",
@@ -65,57 +87,69 @@
                 ]
             };
             $scope.toggleModal('add', emptyPerson);
-        };
-        $scope.removePerson = function () {
+        }
+
+        /**
+         * Remove person from server
+         */
+        function removePerson() {
             PersonService.removePerson($scope.person)
                 .then(function (message){
                     $scope.message = message;
-                    //TODO: find way how to watch PersonService.persons to update every time after response
-                    $scope.persons = PersonService.persons;
                     $scope.toggleModal('delete');
                 });
-        };
+        }
 
-        $scope.addPerson = function (){
+        /**
+         * Add new person on server
+         */
+        function addPerson(){
             PersonService.addPerson($scope.person)
                 .then(function (message){
                     $scope.message = message;
-                    $scope.persons = PersonService.persons;
                     $scope.toggleModal('add');
                 });
-        };
+        }
 
-        $scope.updatePerson = function (){
+        /**
+         * Update existing person on server
+         */
+        function updatePerson(){
             PersonService.updatePerson($scope.person)
                 .then(function (message){
                     $scope.message = message;
-                    $scope.persons = PersonService.persons;
                     $scope.toggleModal('update');
                 });
-        };
-        $scope.typeFilter = function (item){
-            for(var i = 0; i < item.phoneNumber.length; i++){
-                if(item.phoneNumber[i].type === $scope.phoneType){
-                    console.log('Type: ' + $scope.phoneType);
-                    return item.phoneNumber[i].number;
-                }
-            }
-        };
-        $scope.toggleModal = function (type, data) {
-            if(data){
-                $scope.person = data;
+        }
+
+        /**
+         * Open modal by type
+         * @param {string} type - Type of modal window
+         * @param {string} person - Person data for modal
+         */
+        function toggleModal(type, person) {
+            if(person){
+                $scope.person = person;
             }
             $scope.show[type] = !$scope.show[type];
-        };
-        $scope.setPredAndRev = function (predicate, reverse) {
+        }
+
+        /**
+         * Set predicate and reverse for filtering
+         * @param {string} predicate - Predicate
+         * @param {string} reverse - Reverse
+         */
+        function setPredAndRev(predicate, reverse) {
             $scope.predicate = predicate;
             $scope.reverse = reverse;
-        };
-        $scope.closeMessage = function (){
-            delete $scope.message;
-        };
+        }
 
-        $scope.activate();
+        /**
+         * Close success/error message
+         */
+        function closeMessage(){
+            delete $scope.message;
+        }
     }
 })();
 

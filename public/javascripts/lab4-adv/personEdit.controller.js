@@ -9,18 +9,25 @@
 
 	function PersonDetailController($scope, $routeParams, PersonService){
 		$scope.personId = $routeParams.personId;
-
 		$scope.person = PersonService.getPersonById($scope.personId) || {};
 		$scope.personOld = angular.copy($scope.person);
+		$scope.cancel = cancel;
+		$scope.update = update;
 
-		/* Methods */
-		$scope.cancel = function (){
+		//////////////////////////////////////
+		/**
+		 * Cancel current person detail page
+		 */
+		function cancel(){
 			window.location.hash = '/list';
-			PersonService.updateUser($scope.personOld);
-		};
-		$scope.update = function (){
-			window.location.hash = '/list';
-			PersonService.updateUser($scope.person);
-		};
+		}
+
+		/**
+		 * Update person data on server
+		 */
+		function update(){
+			PersonService.updatePerson($scope.person);
+			$scope.cancel();
+		}
 	}
 })();

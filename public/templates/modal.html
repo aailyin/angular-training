@@ -15,7 +15,7 @@
         <div class="modal-buttons">
             <div class="buttons-wrap">
                 <button type="button" class="modal-close btn btn-default" ng-click="hideModal()">{{cancelText}}</button>
-                <button type="submit" class="modal-submit btn btn-primary" ng-click="submitModal()">{{okText}}</button>
+                <button type="submit" class="modal-submit btn btn-primary" ng-class="{'disabled': form.$invalid}" ng-click="submitModal()">{{okText}}</button>
             </div>
         </div>
     </div>

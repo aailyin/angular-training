@@ -17,9 +17,10 @@
                 show: '=',
                 person: '=',
                 onsubmit: '&',
-                oncancel: '&'
+                oncancel: '&',
+                form: '='
             },
-            link: function (scope, element, attrs, ctrl) {
+            link: function (scope, element, attrs) {
                 scope.okText = attrs.okText || "Submit";
                 scope.cancelText = attrs.cancelText || "Cancel";
                 scope.hideModal = function () {
@@ -29,17 +30,7 @@
                 scope.submitModal = function () {
                     scope.onsubmit();
                 };
-                scope.check = function (a, b, c){
-                    console.log('herererer');
-                }
             }
-            /*controller: function ($scope){
-                $scope.$watch('edit_form.$valid', function (newVal, oldVal){
-                    $scope.isInfoValid = newVal;
-                    console.log('here: ' + $scope.edit_form);
-                });
-            }*/
-
         };
     }
 })();

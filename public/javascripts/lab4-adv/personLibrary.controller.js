@@ -19,7 +19,13 @@
 			person: null
 		};
 
-		$scope.changeBtn = function () {
+		$scope.changeBtn = changeBtn;
+
+		//////////////////////////////////////
+		/**
+		 * Change view of Person List page
+		 */
+		function changeBtn() {
 			if($scope.showButton.isShow){
 				window.location.hash = '/';
 				$scope.showButton.btnClass = 'btn-default';

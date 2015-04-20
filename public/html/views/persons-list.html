@@ -1,11 +1,5 @@
 <div>
-	<!-- TODO: add messages object in all service response callbacks -->
-	<div ng-if="message">
-		<div class="alert" ng-class="{'alert-success': message.type == 'success', 'alert-danger': message.type == 'danger'}">
-			<strong><span style="text-transform: capitalize;">{{message.action}}</span> was <span ng-if="message.type == 'danger'">un</span>successful!</strong>
-			<button type="button" class="close" ng-click="closeMessage()">x</button>
-		</div>
-	</div>
+	<messages message="message"></messages>
 	<div class="person-grid">
 		<input type="text" class="form-control" placeholder="Enter text to filter persons" ng-model="query">
 		<div class="line"></div>
@@ -52,7 +46,7 @@
 				<td>{{person.age}}</td>
 				<td>{{person.address.city}}</td>
 				<td>
-					<span ng-repeat="phone in person.phoneNumber | filter:typeFilter(person)">{{phone.number}}</span>
+					<span ng-repeat="phone in person.phoneNumber"><p ng-if="phone.type == phoneType">{{phone.number}}</p></span>
 				</td>
 				<td>
 					<button type="button" class="btn btn-default glyphicon glyphicon-pencil" ng-click="toggleModal('update', this.person)"></button>
@@ -62,16 +56,14 @@
 			</tbody>
 		</table>
 	</div>
-	<div class="last-viewed" ng-show="lastViewed.person != null">
-		Last viewed: {{lastViewed.person.firstName}} {{lastViewed.person.lastName}}
-	</div>
 	<button class="btn btn-primary" ng-click="addNewPerson()"><span class="glyphicon glyphicon-plus"></span>&#32;Add New Person</button>
 
-	<!--Edit person modal-->
+	<!--Update person modal-->
 	<custom-modal header="{{person.firstName}} {{person.lastName}}"
 				  show="show.update"
 				  person="person"
-				  onsubmit="updatePerson()">
+				  onsubmit="updatePerson()"
+				  form="forms.update_form">
 		<div ng-include src="'../templates/updatePerson.html'"></div>
 	</custom-modal>
 
@@ -88,7 +80,8 @@
 	<custom-modal header="Add Person"
 				  show="show.add"
 				  person="person"
-				  onsubmit="addPerson()">
+				  onsubmit="addPerson()"
+				  form="forms.add_form">
 		<div ng-include src="'../templates/addPerson.html'"></div>
 	</custom-modal>
 

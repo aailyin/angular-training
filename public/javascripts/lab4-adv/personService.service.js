@@ -34,21 +34,6 @@
                 .then(requestComplete)
                 .catch(requestFailed);
         }
-        /*this.getUserById = function (personId) {
-            for(var i = 0; i < this.persons.length; i++){
-                if(this.persons[i].id == personId){
-                    return this.persons[i];
-                }
-            }
-        };
-        this.updateUser = function (user){
-            for(var i = 0; i < this.persons.length; i++){
-                if(this.persons[i].id == user.id){
-                    this.persons[i] = user;
-                    return;
-                }
-            }
-        };*/
         /**
          * Add new person data
          * @param {object} person - New person data
@@ -114,15 +99,17 @@
             return $filter('filter')(service.persons, {id: id})[0];
         }
         /**
-         *
-         * */
+         * Handle success request
+         */
         function requestComplete(resp){
             service.persons = resp.data;
-            console.log('SUCCESS: '+ resp);
             return service.persons;
         }
+        /**
+         * Handle error request
+         */
         function requestFailed(resp){
-            console.log('FAIL: '+ resp);
+            console.error('FAILED REQUEST: '+ resp);
         }
     }
 })();
