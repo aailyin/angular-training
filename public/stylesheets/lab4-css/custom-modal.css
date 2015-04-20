@@ -1,0 +1,47 @@
+.custom-modal .overlay {
+	position:absolute;
+	z-index:9999;
+	top:0;
+	left:0;
+	width:100%;
+	height:100%;
+	background-color:#000000;
+	opacity: 0.6;
+}
+
+.custom-modal .modal-header {
+	padding: 10px 15px;
+}
+
+.custom-modal .modal-dialog {
+	z-index:10000;
+	position: absolute;
+	width: 50%;
+	top: 70%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	-webkit-transform: translate(-50%, -50%);
+	-moz-transform: translate(-50%, -50%);
+	background-color: #fff;
+	box-shadow: 4px 4px 80px #000;
+	border-radius: 7px;
+}
+
+.custom-modal .modal-content {
+	padding:10px;
+	text-align: left;
+	box-shadow: none;
+	border: 0;
+	border-radius: 0;
+	border-bottom: 1px solid #e5e5e5;
+}
+
+.custom-modal .modal-content ul {
+	list-style-type: none;
+	padding-left: 10px;
+}
+
+.custom-modal .modal-buttons {
+	padding: 15px;
+	text-align: right;
+}

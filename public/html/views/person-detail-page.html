@@ -1,4 +1,8 @@
 <div class="detail-person-wrapper">
+	<header>
+		<h3>Edit person: {{person.firstName}} {{person.lastName}}</h3>
+	</header>
+	<div class="line"></div>
 	<form name="edit_form" novalidate ng-submit="update()">
 		<div class="details row">
 			<div class="col-sm-6 col-xs-6">
@@ -98,9 +102,12 @@
 			</div>
 		</div>
 		<div class="line"></div>
-		<div class="modal-buttons pull-right">
-			<button type="button" class="btn btn-default" ng-click="hideModal()">Cancel</button>
+		<div class="form-group pull-right">
+			<button type="button" class="btn btn-default" ng-click="cancel()">Cancel</button>
 			<button type="submit" class="btn btn-primary" ng-class="{'disabled': edit_form.$invalid}">Update</button>
+		</div>
+		<div class="error-container form-message pull-right" ng-show="edit_form.$invalid">
+			<p>Please correct error in the form above</p>
 		</div>
 	</form>
 </div>

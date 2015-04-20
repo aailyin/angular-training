@@ -15,7 +15,6 @@
         $scope.typeFilter = function (item){
             for(var i = 0; i < item.phoneNumber.length; i++){
                 if(item.phoneNumber[i].type === $scope.phoneType){
-                    console.log('Type: ' + $scope.phoneType);
                     return item.phoneNumber[i].number;
                 }
             }
