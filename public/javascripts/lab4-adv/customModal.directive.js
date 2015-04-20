@@ -8,7 +8,7 @@
     //////////////////////////////////////////////
     function customModal() {
         return {
-            templateUrl: '../templates/modal.html',
+            templateUrl: '../templates/lab4-templates/modal.html',
             restrict: 'EA',
             transclude: true,
             replace: true,

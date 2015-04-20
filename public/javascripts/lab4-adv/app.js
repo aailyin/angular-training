@@ -6,7 +6,7 @@
     personLibraryApp.config(['$routeProvider', function ($routeProvider){
         $routeProvider
             .when('/list', {
-                templateUrl: '/static/html/views/persons-list.html',
+                templateUrl: '/static/html/views/lab4-views/persons-list.html',
                 controller: 'PersonGridController'
             })
             .when('/person/:personId', {
